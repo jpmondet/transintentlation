@@ -4,6 +4,8 @@ import click
 
 import transintentlation
 
+import diffios
+
 
 @click.command('transintentlation')
 @click.argument('count', type=int, metavar='N')
