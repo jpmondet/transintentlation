@@ -42,6 +42,7 @@ class Configuring(Config):
                         current_group.append(line)
                     else:
                         groups.append(current_group)
+                        current_group = []
                         banner = None
                 else:
                     banner = self._banner_case(line)
