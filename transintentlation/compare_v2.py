@@ -17,7 +17,7 @@ except ImportError:
     from Queue import Queue
 
 from diffios import Compare, DELIMITER_START
-from config_v2 import Configuring
+from transintentlation.config_v2 import Configuring
 
 
 class Comparing(Compare):
