@@ -36,18 +36,20 @@ class Configuring(Config):
         banner = None
         current_group, groups = [], []
         for line in super()._valid_config():
-            if not line.startswith(' ') and current_group:
-                if banner:
-                    if not line.startswith(banner):
-                        current_group.append(line)
+            if banner:
+                if not line.startswith(banner):
+                    if len(current_group) > 1:
+                        current_group[1] = '{}\n{}'.format(current_group[1], line)
                     else:
-                        groups.append(current_group)
-                        current_group = []
-                        banner = None
+                        current_group.append(line)
                 else:
-                    banner = self._banner_case(line)
                     groups.append(current_group)
-                    current_group = [line]
+                    current_group = []
+                    banner = None
+            elif not line.startswith(' ') and current_group:
+                banner = self._banner_case(line)
+                groups.append(current_group)
+                current_group = [line]
             else:
                 current_group.append(line)
         if current_group:
