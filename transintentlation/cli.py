@@ -1,11 +1,17 @@
-""" Ugly command line to do some tests """
+""" Ugly command line that will should be prettier over time.
+For now it does the job.
+
+Usage :
+    transintentlation intent.cfg n9k.cfg --help
+"""
 
 import click
 
-from transintentlation import Comparing
+from transintentlation import Comparing, Translate
 
 
-@click.command('transintentlation', help='Show the diff between the configs')
+@click.command('transintentlation', help='Show the commands to apply to be in \
+               sync with the intent config by default')
 @click.argument('intent_config', type=click.Path(exists=True, dir_okay=False))
 @click.argument('running_config', type=click.Path(exists=True, dir_okay=False))
 @click.option('--missing',
@@ -24,31 +30,50 @@ from transintentlation import Comparing
               type=bool,
               default=False,
               help='Show the commands to delete the additional config')
+@click.option('--diff',
+              type=bool,
+              default=False,
+              help='Show only the diff between the 2 configs')
+# pylint: disable=too-many-arguments
 def cli(intent_config,
         running_config,
         missing,
         additional,
         apply_missing,
-        delete_additional):
-    """ Show the diff by default"""
+        delete_additional,
+        diff):
+    """ Show the cmds to apply to conform with the intent config by default"""
 
-    diff = Comparing(intent_config, running_config)
+    print('='*100)
+    print('COMMANDS TO BE IN SYNC WITH THE INTENT CONFIG:')
+    translate = Translate(intent_config, running_config)
+    translate.apply_all_configs()
+    print('='*100)
+
     if missing:
+        diff = Comparing(intent_config, running_config)
         print('='*100)
-        print('MISS')
+        print('MISSING CONFIG')
         print(diff.pprint_missing())
         print('='*100)
-    elif additional:
+    if additional:
+        diff = Comparing(intent_config, running_config)
         print('='*100)
-        print('ADD:')
+        print('ADDITIONAL CONFIG:')
         print(diff.pprint_additional())
         print('='*100)
-    elif apply_missing:
-        print('Not implemented yet')
-    elif delete_additional:
-        print('Not implemented yet')
-    else:
+    if apply_missing:
         print('='*100)
-        print('DELTA:')
+        print('COMMANDS TO APPLY THE MISSING CONFIG:')
+        translate.to_apply()
+        print('='*100)
+    if delete_additional:
+        print('='*100)
+        print('COMMANDS TO DELETE THE ADDITIONAL CONFIG:')
+        translate.to_delete()
+        print('='*100)
+    if diff:
+        diff = Comparing(intent_config, running_config)
+        print('='*100)
+        print('SHOWING THE DIFF BETWEEN THE 2 CONFIGS')
         print(diff.delta())
-
