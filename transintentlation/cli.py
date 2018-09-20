@@ -6,6 +6,8 @@ Usage :
 """
 
 import click
+from jinja2 import Environment, FileSystemLoader, Template
+import ruamel.yaml as yaml
 
 from transintentlation import Comparing, Translate
 
@@ -35,6 +37,11 @@ Options can be used by passing --OPTION_NAME=True')
               type=bool,
               default=False,
               help='Show only the diff between the 2 configs')
+@click.option('--variables',
+              type=click.Path(exists=True, dir_okay=False),
+              default=None,
+              help='In case you provide a .j2 file as the "intent_config", you \
+can pass a variables YAML file with this option')
 # pylint: disable=too-many-arguments
 def cli(intent_config,
         running_config,
@@ -42,9 +49,12 @@ def cli(intent_config,
         additional,
         apply_missing,
         delete_additional,
-        diff):
+        diff,
+        variables):
     """ Show the cmds to apply to conform with the intent config by default"""
 
+    if variables:
+        intent_config = _render_template(intent_config, variables)
     print('='*100)
     print('COMMANDS TO BE IN SYNC WITH THE INTENT CONFIG:')
     translate = Translate(intent_config, running_config)
@@ -78,3 +88,18 @@ def cli(intent_config,
         print('='*100)
         print('SHOWING THE DIFF BETWEEN THE 2 CONFIGS')
         print(diff.delta())
+
+
+def _render_template(template, variables):
+    """ With a template .j2 and variables as .yaml,
+    renders the final config """
+
+    with open(variables, 'r') as vars_file:
+        vars = yaml.safe_load(vars_file)
+
+    env = Environment(loader=FileSystemLoader(''))
+    template = env.get_template(template)
+    config = template.render(vars)
+    with open('/tmp/rendered_config', 'w') as rendered:
+        rendered.write(config)
+    return '/tmp/rendered_config'

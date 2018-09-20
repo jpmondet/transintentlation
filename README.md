@@ -28,6 +28,9 @@ Options:
   --delete_additional BOOLEAN  Show the commands to delete the additional
                                config
   --diff BOOLEAN               Show only the diff between the 2 configs
+  --variables PATH             In case you provide a .j2 file as the
+                               "intent_config", you can pass a variables YAML
+                               file with this option
   --help                       Show this message and exit.
 
 ```
