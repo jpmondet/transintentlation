@@ -10,18 +10,16 @@ treatment of a banner or some changes not collected)
 since the diffios project is not being supported anymore.
 """
 
-from collections import namedtuple
-try:
-    from queue import Queue
-except ImportError:
-    from Queue import Queue
-
 from diffios import Compare, DELIMITER_START
 from transintentlation.config_v2 import Configuring
 
 
 class Comparing(Compare):
+    """ Comparing class which parent is from diffios package.
+    This class intend to resolve some treatments not available
+    on this parent """
     def __init__(self, baseline, comparison, ignore_lines=None):
+        super().__init__(baseline, comparison, ignore_lines)
         self._baseline = baseline
         self._comparison = comparison
         self._ignore_lines = ignore_lines

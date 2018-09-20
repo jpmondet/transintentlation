@@ -21,11 +21,13 @@ class Translate():
         self.cmd_to_delete = self.comparing.pprint_additional()
 
     # Utils :
-    def _banner_case(self, group, add_del='add'):
+    @staticmethod
+    def _banner_case(group, add_del='add'):
         """ Specific handle for banners... """
         if 'add' in add_del:
-            # We have to append the special char at the end
-            group.append(group[0][-1])
+            if group[-1] != group[0][-1]:
+                # We have to append the special char at the end
+                group.append(group[0][-1])
         else:
             # We keep only the parent without the special char
             group = [group[0][:-1]]
@@ -41,11 +43,12 @@ class Translate():
 
     def _get_missing_equivalent(self, additional_group):
         """ If a group of cmd is missing & additional (a modification of an
-        interface IP for example) we return the group of cmd from the missing 
+        interface IP for example) we return the group of cmd from the missing
         group list equivalent to the group passed in parameters """
         for group in self.missing:
             if group[0] == additional_group[0]:
                 return group
+        return None
 
     def _get_additional_equivalent(self, missing_group):
         """ If a group of cmd is missing & additional (a modification of an
@@ -54,8 +57,10 @@ class Translate():
         for group in self.additional:
             if group[0] == missing_group[0]:
                 return group
+        return None
 
-    def _print_cmds(self, group, deletion=False):
+    @staticmethod
+    def _print_cmds(group, deletion=False):
         """ Simple method to print easily a list of commands """
         negation = ' no ' if deletion else ''
 

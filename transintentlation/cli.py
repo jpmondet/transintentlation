@@ -11,7 +11,8 @@ from transintentlation import Comparing, Translate
 
 
 @click.command('transintentlation', help='Show the commands to apply to be in \
-               sync with the intent config by default')
+sync with the intent config by default. \
+Options can be used by passing --OPTION_NAME=True')
 @click.argument('intent_config', type=click.Path(exists=True, dir_okay=False))
 @click.argument('running_config', type=click.Path(exists=True, dir_okay=False))
 @click.option('--missing',

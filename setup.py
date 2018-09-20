@@ -1,9 +1,10 @@
+""" Setup package """
 from codecs import open as codecs_open
 from setuptools import setup, find_packages
 
 
 # Get the long description from the relevant file
-with codecs_open('README.rst', encoding='utf-8') as f:
+with codecs_open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
 
@@ -11,6 +12,7 @@ setup(name='transintentlation',
       version='0.0.1',
       description=u"Analyze an intent config and a running config and translate\
       it to actual commands to apply to IOS-like devices",
+      long_description=long_description,
       classifiers=[],
       keywords='',
       author=u"JP Mondet",
@@ -20,7 +22,7 @@ setup(name='transintentlation',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'click', 
+          'click',
           'diffios'
       ],
       extras_require={
