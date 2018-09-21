@@ -1,10 +1,5 @@
-# Transintentlation **Work In Progress...**
+# Transintentlation // Work In Progress...
 ======
-
-![alt text](https://travis-ci.org/jpmondet/transintentlation "misc/transintentlation.svc")
-
-![alt text](https://coveralls.io/r/jpmondet/transintentlation "https://coveralls.io/repos/jpmondet/transintentlation/badge.png)
-
 
 ## Usage as CLI:
 
