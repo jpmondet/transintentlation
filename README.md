@@ -1,21 +1,22 @@
-#Transintentlation
+# Transintentlation **Work In Progress...**
 ======
 
-[alt text](https://travis-ci.org/jpmondet/transintentlation "misc/transintentlation.svc")
-[alt text](https://coveralls.io/r/jpmondet/transintentlation "https://coveralls.io/repos/jpmondet/transintentlation/badge.png)
+![alt text](https://travis-ci.org/jpmondet/transintentlation "misc/transintentlation.svc")
 
-**Work In Progress...**
-
+![alt text](https://coveralls.io/r/jpmondet/transintentlation "https://coveralls.io/repos/jpmondet/transintentlation/badge.png)
 
 
-##Usage as CLI:
+## Usage as CLI:
 
 By default, shows the commands to apply on a device to conform with the intended config :
+
 ``transintentlation intent.cfg n9k.cfg``
 
 In addition, there are some options:
-``transintentlation --help``
-```
+
+```bash
+transintentlation --help
+
 Usage: transintentlation [OPTIONS] INTENT_CONFIG RUNNING_CONFIG
 
   Show the commands to apply to be in sync with the intent config by
