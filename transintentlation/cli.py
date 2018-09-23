@@ -56,7 +56,8 @@ def cli(intent_config,
     if variables:
         intent_config = _render_template(intent_config, variables)
     print('='*100)
-    print('COMMANDS TO BE IN SYNC WITH THE INTENT CONFIG:')
+    print('!COMMANDS TO BE IN SYNC WITH THE INTENT CONFIG:')
+    print('='*100)
     translate = Translate(intent_config, running_config)
     translate.apply_all_configs()
     print('='*100)

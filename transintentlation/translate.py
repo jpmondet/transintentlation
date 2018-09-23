@@ -100,11 +100,10 @@ class Translate():
     def apply_all_configs(self):
         """ Combines the configs to add/delete """
 
-        print('!'+'#'*99)
-        print('!'+'#'*36+'CLEANINGS AND MODIFICATIONS'+'#'*36)
-        print('!'+'#'*99)
+        print('!!'+'CLEANINGS AND MODIFICATIONS')
+        print('!'+'-'*27)
         self.to_delete(and_add=True)
-        print('!'+'#'*99)
-        print('!'+'#'*40+'APPLYING NEW CONFIGS'+'#'*39)
-        print('!'+'#'*99)
+        print('!'+'-'*27)
+        print('!!'+'NEW CONFIGS')
+        print('!'+'-'*27)
         self.to_apply(and_del=True)
