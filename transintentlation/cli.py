@@ -63,16 +63,16 @@ def cli(intent_config,
     print('='*100)
 
     if missing:
-        diff = Comparing(intent_config, running_config)
+        miss = Comparing(intent_config, running_config)
         print('='*100)
         print('MISSING CONFIG')
-        print(diff.pprint_missing())
+        print(miss.pprint_missing())
         print('='*100)
     if additional:
-        diff = Comparing(intent_config, running_config)
+        add = Comparing(intent_config, running_config)
         print('='*100)
         print('ADDITIONAL CONFIG:')
-        print(diff.pprint_additional())
+        print(add.pprint_additional())
         print('='*100)
     if apply_missing:
         print('='*100)
@@ -85,10 +85,10 @@ def cli(intent_config,
         translate.to_delete()
         print('='*100)
     if diff:
-        diff = Comparing(intent_config, running_config)
+        delta = Comparing(intent_config, running_config)
         print('='*100)
         print('SHOWING THE DIFF BETWEEN THE 2 CONFIGS')
-        print(diff.delta())
+        print(delta.delta())
 
 
 def _render_template(template, variables):
