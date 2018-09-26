@@ -64,6 +64,47 @@ Options:
 
 ## Usage in Python: 
 
+### All changes in one call:
+
+```python
+from transintentlation import Translate
+
+translate = Translate(intent_config, running_config)
+translate.apply_all_configs()
+
+```
+
+### Only the commands needed to apply missing config : 
+
+```python
+from transintentlation import Translate
+
+translate = Translate(intent_config, running_config)
+translate.to_apply()
+
+```
+
+### Only the commands needed to delete the extra config : 
+
+```python
+from transintentlation import Translate
+
+translate = Translate(intent_config, running_config)
+translate.to_delete()
+
+```
+
+### Some other comparing options: 
+
+```python
+from transintentlation import Comparing
+
+diff = Comparing(intent_config, running_config)
+
+diff.pprint_missing()
+diff.pprint_additional()
+diff.delta()
+```
 
 
 
