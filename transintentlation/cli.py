@@ -6,8 +6,8 @@ Usage :
 """
 
 import click
-from jinja2 import Environment, FileSystemLoader, Template
-import ruamel.yaml as yaml
+from jinja2 import Environment, FileSystemLoader
+import ruamel.yaml as yaml  # pylint: disable=useless-import-alias
 
 from transintentlation import Comparing, Translate
 
@@ -96,11 +96,11 @@ def _render_template(template, variables):
     renders the final config """
 
     with open(variables, 'r') as vars_file:
-        vars = yaml.safe_load(vars_file)
+        varsf = yaml.safe_load(vars_file)
 
     env = Environment(loader=FileSystemLoader(''))
     template = env.get_template(template)
-    config = template.render(vars)
+    config = template.render(varsf)
     with open('/tmp/rendered_config', 'w') as rendered:
         rendered.write(config)
     return '/tmp/rendered_config'

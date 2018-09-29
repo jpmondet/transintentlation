@@ -3,6 +3,7 @@
 # vim:fenc=utf-8
 #
 # Distributed under terms of the MIT license.
+# pylint: disable=useless-super-delegation
 """
 Enhancing the 'Config' class done in diffios projet
 with some functions and trying to resolve some bugs (such as the
@@ -16,7 +17,7 @@ from diffios import Config
 class Configuring(Config):
     """ Child of diffios.Config class """
     def __init__(self, config, ignore_lines=None):
-        super().__init__(config, ignore_lines=None)
+        super().__init__(config, ignore_lines)
 
     @staticmethod
     def _banner_case(line):
