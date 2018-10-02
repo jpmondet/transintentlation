@@ -1,6 +1,14 @@
 # Transintentlation // Work In Progress...
 ======
 
+## Installation: 
+
+```bash
+git clone https://github.com/jpmondet/transintentlation
+cd transintentlation
+pip install .
+```
+
 ## Usage as CLI:
 
 By default, shows the commands to apply on a device to conform with the intended config :

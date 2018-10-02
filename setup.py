@@ -9,7 +9,7 @@ with codecs_open('README.md', encoding='utf-8') as f:
 
 
 setup(name='transintentlation',
-      version='0.0.1',
+      version='1.0.0',
       description=u"Analyze an intent config and a running config and translate\
       it to actual commands to apply to IOS-like devices",
       long_description=long_description,
