@@ -47,7 +47,7 @@ class Configuring(Config):
                     groups.append(current_group)
                     current_group = []
                     banner = None
-            elif not line.startswith(' ') and current_group:
+            elif not line.startswith((' ', '\t')) and current_group:
                 banner = self._banner_case(line)
                 groups.append(current_group)
                 current_group = [line]
