@@ -7,6 +7,8 @@
 Translate the diffs into actual commands to apply
 in an IOS-like environment.
 """
+import sys
+from io import StringIO
 from transintentlation.compare_v2 import Comparing
 
 
@@ -107,3 +109,20 @@ class Translate():
         print('!!'+'NEW CONFIGS')
         print('!'+'-'*27)
         self.to_apply(and_del=True)
+
+    def cmds_to_conform(self):
+        """ All the configs needed to conform with
+        the intended config. 
+        
+        Returns a list of all the commands to apply """
+
+        cmds = StringIO()
+        sys.stdout = cmds
+        self.to_delete(and_add=True)
+        self.to_apply(and_del=True)
+
+        sys.stdout = sys.__stdout__
+
+        return cmds.getvalue().splitlines()
+
+

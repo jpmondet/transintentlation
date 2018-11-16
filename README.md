@@ -1,7 +1,7 @@
 # Transintentlation // Work In Progress...
 ======
 
-## Installation: 
+## Installation
 
 ```bash
 git clone https://github.com/jpmondet/transintentlation
@@ -9,20 +9,21 @@ cd transintentlation
 pip install .
 ```
 
-## Usage as CLI:
+## Usage as CLI
 
 By default, shows the commands to apply on a device to conform with the intended config :
 
 ``transintentlation intent.cfg running.cfg``
 
-Example output : 
+Example output :
+
 ```
 !====================================================================================================
 !COMMANDS TO APPLY TO BE IN SYNC WITH THE INTENT CONFIG:
 !====================================================================================================
 !!CLEANINGS AND MODIFICATIONS
 !---------------------------
-no banner motd 
+no banner motd
 no hostname RUNNING_HOSTNAME
 interface loopback0
  no ip address 172.18.0.6/23
@@ -44,7 +45,6 @@ interface Ethernet1/9
  ip address 11.22.33.44/24
 !====================================================================================================
 ```
-
 
 In addition, there are some options:
 
@@ -70,9 +70,9 @@ Options:
 
 ```
 
-## Usage in Python: 
+## Usage in Python
 
-### All changes in one call:
+### Printing all changes in one call
 
 ```python
 from transintentlation import Translate
@@ -82,7 +82,17 @@ translate.apply_all_configs()
 
 ```
 
-### Only the commands needed to apply missing config : 
+### Getting all changes as a list instead of printing them directly
+
+```python
+from transintentlation import Translate
+
+translate = Translate(intent_config, running_config)
+cmds = translate.cmds_to_conform()
+
+```
+
+### Print only the commands needed to apply missing config
 
 ```python
 from transintentlation import Translate
@@ -92,7 +102,7 @@ translate.to_apply()
 
 ```
 
-### Only the commands needed to delete the extra config : 
+### Print only the commands needed to delete the extra config
 
 ```python
 from transintentlation import Translate
@@ -102,7 +112,7 @@ translate.to_delete()
 
 ```
 
-### Some other comparing options: 
+### Some other comparing options
 
 ```python
 from transintentlation import Comparing
@@ -113,6 +123,7 @@ diff.pprint_missing()
 diff.pprint_additional()
 diff.delta()
 ```
+
 
 
 
