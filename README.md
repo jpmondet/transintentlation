@@ -1,5 +1,4 @@
-# Transintentlation // Work In Progress...
-======
+# Transintentlation
 
 ## Installation
 

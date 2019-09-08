@@ -9,4 +9,4 @@ py==1.6.0
 pytest==3.8.0
 six==1.11.0
 ruamel.yaml==0.15.69
-Jinja2==2.9.5
+Jinja2>=2.10.1
